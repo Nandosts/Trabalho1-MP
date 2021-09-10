@@ -1,0 +1,4 @@
+Com o g++ e o make instalado 
+digite "make" neste diretório
+ou
+Para uma execução rápida, digite "make && ./testa_velha.exe"
