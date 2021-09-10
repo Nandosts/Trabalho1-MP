@@ -29,7 +29,6 @@ TEST_CASE("Testa se o primeiro jogador ganha", "[single-file]") {
                                { 1, 1, 1 }
                           };
         REQUIRE(VerificaVelha(teste3) == 1);
-
     }
 
     SECTION("Vertical") {
@@ -50,7 +49,6 @@ TEST_CASE("Testa se o primeiro jogador ganha", "[single-file]") {
                                { 0, 2, 1 }
                           };
         REQUIRE(VerificaVelha(teste6) == 1);
-
     }
 
     SECTION("Diagonal") {
@@ -65,7 +63,6 @@ TEST_CASE("Testa se o primeiro jogador ganha", "[single-file]") {
                                { 1, 2, 0 }
                           };
         REQUIRE(VerificaVelha(teste8) == 1);
-
     }
 }
 
@@ -88,7 +85,6 @@ TEST_CASE("Testa se o segundo jogador ganha", "[single-file]") {
                                 { 2, 2, 2 }
                            };
         REQUIRE(VerificaVelha(teste11) == 2);
-
     }
     SECTION("Vertical") {
         int teste12[3][3]= {    { 2, 1, 1 },
@@ -108,7 +104,6 @@ TEST_CASE("Testa se o segundo jogador ganha", "[single-file]") {
                                 { 0, 0, 2 }
                            };
         REQUIRE(VerificaVelha(teste14) == 2);
-
     }
     SECTION("Diagonal") {
         int teste15[3][3]= {    { 2, 0, 1 },
@@ -122,7 +117,6 @@ TEST_CASE("Testa se o segundo jogador ganha", "[single-file]") {
                                 { 2, 1, 0 }
                            };
         REQUIRE(VerificaVelha(teste16) == 2);
-
     }
 }
 
@@ -144,11 +138,10 @@ TEST_CASE("Testa se dá velha", "[single-file]") {
                             { 2, 2, 1 }
                         };
     REQUIRE(VerificaVelha(teste19) == 0);
-
 }
 
 TEST_CASE("Testa se o jogo não foi finalizado", "[single-file}") {
-	int teste20[3][3]= {    { 0, 0, 0 },
+    int teste20[3][3] = {   { 0, 0, 0 },
                             { 0, 0, 0 },
                             { 0, 0, 0 }
                         };
@@ -171,12 +164,9 @@ TEST_CASE("Testa se o jogo não foi finalizado", "[single-file}") {
                             { 1, 2, 1 }
                         };
     REQUIRE(VerificaVelha(teste23) == -1);
-
-
 }
 
 TEST_CASE("Testa se o jogo for impossível", "[single-file]") {
-
     SECTION("Caso um jogador faça uma quantidade inválida de jogadas") {
         int teste24[3][3]= {    { 1, 2, 1 },
                                 { 2, 1, 2 },
@@ -189,7 +179,6 @@ TEST_CASE("Testa se o jogo for impossível", "[single-file]") {
                                 { 1, 0, 1 }
                             };
         REQUIRE(VerificaVelha(teste25) == -2);
-
     }
 
     SECTION("Valores inválidos (diferentes de 0, 1 ou 2)") {
@@ -199,13 +188,13 @@ TEST_CASE("Testa se o jogo for impossível", "[single-file]") {
                             };
         REQUIRE(VerificaVelha(teste26) == -2);
 
-		int teste27[3][3]= {    {'1', '1', '1'},
+        int teste27[3][3]= {    {'1', '1', '1'},
                                 {'1', '1', '1'},
                                 {'1', '1', '1'}
                             };
         REQUIRE(VerificaVelha(teste27) == -2);
 
-		int teste28[3][3]= {    { 'a', 'b', 'c' },
+        int teste28[3][3]= {    { 'a', 'b', 'c' },
                                 { 'a', 'e', 'f' },
                                 { 'g', 'h', 'i' }
                             };
@@ -213,16 +202,16 @@ TEST_CASE("Testa se o jogo for impossível", "[single-file]") {
     }
 
     SECTION("Caso haja vitória dos 2 jogadores") {
-	    int teste29[3][3]= {    { 2, 1, 1 },
+        int teste29[3][3]= {    { 2, 1, 1 },
                                 { 2, 1, 1 },
                                 { 2, 1, 1 }
                             };
         REQUIRE(VerificaVelha(teste29) == -2);
 
-	    int teste30[3][3]= {    { 2, 2, 2 },
+        int teste30[3][3]= {    { 2, 2, 2 },
                                 { 1, 1, 1 },
                                 { 0, 0, 0 }
                             };
         REQUIRE(VerificaVelha(teste30) == -2);
-	}
+    }
 }

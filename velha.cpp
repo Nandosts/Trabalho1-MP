@@ -19,151 +19,142 @@
  * Caso o jogador 1 ganhe, retornará 1, caso o jogador 2 ganhe, retornará 2, e caso empate, retornará 0
  */ 
 
-int VerificaVelha( int velha[3][3] ) {
+int VerificaVelha(int velha[3][3]) {
     // Definindo as variáveis de todos os campos da matriz
-	//
+    //
     // Primeira linha
-	int a = velha[0][0];
+    int a = velha[0][0];
     int b = velha[0][1];
     int c = velha[0][2];
-	// Segunda linha
+    // Segunda linha
     int d = velha[1][0];
     int e = velha[1][1];
     int f = velha[1][2];
-	// Terceira linha
+    // Terceira linha
     int g = velha[2][0];
     int h = velha[2][1];
     int i = velha[2][2];
 
-	// Marcando contadores, para a primeira e a segunda jogadas
+    // Marcando contadores, para a primeira e a segunda jogadas
     int first_count = 0;
     int second_count = 0;
+    // Guardando o winner da partida
+    int winner = 0;
 
-	// Guardando o winner da partida 
-	int winner = 0;
-
-	// Contando a quantidades de numeros 1 e 2, com loop para verificar as linhas e cada coluna dentro daquelas linhas
+    // Contando a quantidades de numeros 1 e 2
+    // Loops para verificar as linhas e cada coluna dentro daquelas linhas
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             if (velha[i][j] == 1) {
-                // Atualiza o contador de 1 se for encontrado um número 1
+                // Atualiza o contador de 1 se for encontrado um número 1.
                 first_count++;
             } else if (velha[i][j] == 2) {
-                // Atualiza o contador de 2 se for encontrado um número 2
+                // Atualiza o contador de 2 se for encontrado um número 2.
                 second_count++;
             } else if (velha[i][j] != 0) {
-                // Verifica existência de valor inválido e retorna -2, que será nossa forma de verificar.
+                // Verifica existência de valor inválido e retorna -2.
                 return -2;
             }
         }
     }
 
-	// Conferindo se o jogo é invalido
+    // Conferindo se o jogo é invalido
     if (first_count > (second_count + 1) || second_count > (first_count + 1)) {
-        // Se existir uma quantidade inválida de 1 ou 2, retorna -2, para verificar que é inválido.
+        // Se existir uma quantidade inválida de 1 ou 2, retorna -2.
         return -2;
     }
 
-	 /* Para conferir se o ganhador foi o primeiro jogador */
-
+    /* Para conferir se o ganhador foi o 1° jogador */
     if (first_count >= 3) {
-		
-		/* Vencendo pelas linhas */
+        /* Vencendo pelas linhas */
+        if ((a == b && b == c && a == 1) ||
+        (d == e && e == f && d == 1) || (g == h && h == i && g == 1)) {
+            winner = 1;
 
-		if ((a == b && b == c && a == 1) || (d == e && e == f && d == 1) || (g == h && h == i && g == 1)) {
-			winner = 1;
-		} 
-		
-		/* Vencendo pelas colunas */
+        } else if ((a == d && d == g && a == 1) ||
+        (b == e && e == h && b == 1) || (c == f && f == i && c == 1)) {
+        /* Vencendo pelas colunas */
+            winner = 1;
+        } else if ((a == e && e == i && a == 1) ||
+        (c == e && e == g && c == 1)) {
+        /* Vencendo pelas diagonais */
+            winner = 1;
+        }
+    }
+    /* Para conferir se o ganhador foi o 2° jogador */
+    if (second_count >= 3) {
+        /* Vencendo pelas linhas */
+        if (a == b && b == c && a == 2) {
+            // Se o 1° já tiver "ganhado", não faz sentido ter um 2° ganhador.
+            // Retorna código de invalidez
+            if (winner == 1) {
+                return -2;
+            }
+            winner = 2;
+        } else if (d == e && e == f && d == 2) {
+            // Se o 1° já tiver "ganhado", não faz sentido ter um 2° ganhador.
+            // Retorna código de invalidez
+            if (winner == 1) {
+                return -2;
+            }
+            winner = 2;
+        } else if (g == h && h == i && g == 2) {
+            // Se o 1° já tiver "ganhado", não faz sentido ter um 2° ganhador.
+            // Retorna código de invalidez
+            if (winner == 1) {
+                return -2;
+            }
+            winner = 2;
+        } else if (a == d && d == g && a == 2) {
+        /* Vencendo pelas colunas */
+            // Se o 1° já tiver "ganhado", não faz sentido ter um 2° ganhador.
+            // Retorna código de invalidez
+            if (winner == 1) {
+                return -2;
+            }
+            winner = 2;
+        } else if (b == e && e == h && b == 2) {
+            // Se o 1° já tiver "ganhado", não faz sentido ter um 2° ganhador.
+            // Retorna código de invalidez
+            if (winner == 1) {
+                return -2;
+            }
+            winner = 2;
+        } else if (c == f && f == i && c == 2) {
+            // Se o 1° já tiver "ganhado", não faz sentido ter um 2° ganhador.
+            // Retorna código de invalidez
+            if (winner == 1) {
+                return -2;
+            }
+            winner = 2;
+        } else if (a == e && e == i && a == 2) {
+        /* Vencendo pelas diagonais */
+            // Se o 1° já tiver "ganhado", não faz sentido ter um 2° ganhador.
+            // Retorna código de invalidez
+            if (winner == 1) {
+                return -2;
+            }
+            winner = 2;
+        } else if (c == e && e == g && c == 2) {
+            // Se o 1° já tiver "ganhado", não faz sentido ter um 2° ganhador.
+            // Retorna invalidez
+            if (winner == 1) {
+                return -2;
+            }
+            winner = 2;
+        }
+    }
 
-		else if ((a == d && d == g && a == 1) || (b == e && e == h && b == 1) || (c == f && f == i && c == 1)) {
-			winner = 1;
-		}
-
-		/* Vencendo pelas diagonais */
-		
-		else if ((a == e && e == i && a == 1) || (c == e && e == g && c == 1)) {
-			winner = 1;
-		}
-	}
-
-	 /* Para conferir se o ganhador foi o segundo jogador */
-
-	if (second_count >= 3) {
-		
-		/* Vencendo pelas linhas */
-
-		if (a == b && b == c && a == 2) {
-			// Se o primeiro já tiver "ganhado", não faz sentido ter um segundo ganhador. Retorna inválido
-			if (winner == 1) {
-				return -2;
-			}
-			winner = 2;
-		} 
-		else if (d == e && e == f && d == 2) {
-			// Se o primeiro já tiver "ganhado", não faz sentido ter um segundo ganhador. Retorna inválido
-			if (winner == 1) {
-				return -2;
-			}
-			winner = 2;
-		}
-		else if (g == h && h == i && g == 2) {
-			// Se o primeiro já tiver "ganhado", não faz sentido ter um segundo ganhador. Retorna inválido
-			if (winner == 1) {
-				return -2;
-			}
-			winner = 2;
-		}
-		
-		/* Vencendo pelas colunas */
-
-		else if (a == d && d == g && a == 2){
-			// Se o primeiro já tiver "ganhado", não faz sentido ter um segundo ganhador. Retorna inválido
-			if (winner == 1) {
-				return -2;
-			}
-			winner = 2;
-		} 
-		else if (b == e && e == h && b == 2) {
-			// Se o primeiro já tiver "ganhado", não faz sentido ter um segundo ganhador. Retorna inválido
-			if (winner == 1) {
-				return -2;
-			}
-			winner = 2;
-		} 
-		else if (c == f && f == i && c == 2) {
-			// Se o primeiro já tiver "ganhado", não faz sentido ter um segundo ganhador. Retorna inválido
-			if (winner == 1) {
-				return -2;
-			}
-			winner = 2;
-		}
-		/* Vencendo pelas diagonais */
-		else if (a == e && e == i && a == 2) {
-			// Se o primeiro já tiver "ganhado", não faz sentido ter um segundo ganhador. Retorna inválido
-			if (winner == 1) {
-				return -2;
-			}
-			winner = 2;
-		}
-		else if (c == e && e == g && c == 2) {
-			// Se o primeiro já tiver "ganhado", não faz sentido ter um segundo ganhador. Retorna inválido
-			if (winner == 1) {
-				return -2;
-			}
-			winner = 2;
-		}
-	}
-
-	// Verifica se deu velha
+    // Verifica se deu velha
     if (winner != 1 && winner != 2) {
-		if (first_count + second_count == 9) {
-    	    winner = 0;
-    	} else if (first_count + second_count != 9) {  // Verifica se o jogo não foi finalizado
-    	    winner = -1;
-		}
-	}
-	return winner; /*!< retorna quem foi o vencedor */
+        if (first_count + second_count == 9) {
+            winner = 0;
+        } else if (first_count + second_count != 9) {
+        // Verifica se o jogo não foi finalizado
+            return -1;
+        }
+    }
+    return winner; /*!< retorna quem foi o vencedor */
 }
 
 
