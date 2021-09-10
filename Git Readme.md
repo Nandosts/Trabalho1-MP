@@ -21,5 +21,5 @@ Foi utilizado o cpplint para organizar o código
 ex: cpplint ./testa_velha.cpp
 nos arquivos .cpp e .hpp
 
-F testada a memória com 
+Foi testada a memória com 
 make valgrind
