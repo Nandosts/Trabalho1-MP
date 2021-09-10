@@ -1,4 +1,16 @@
 Com o g++ e o make instalado 
-digite "make" neste diretório
-ou
-Para uma execução rápida, digite "make && ./testa_velha.exe"
+
+Para a execução do programa, copie o seguinte comando e cole no terminal 
+make && ./testa_velha.exe && make gcov
+
+
+Make foi utilizado para compilar o programa;
+o ./testa_velha.exe para rodar o programa;
+o make gcov para criar um arquivo .gcov com anotações.
+
+Foi utilizado o cpplint para organizar o código
+ex: cpplint ./testa_velha.cpp
+nos arquivos .cpp e .hpp
+
+e testada a memória com 
+make valgrind
